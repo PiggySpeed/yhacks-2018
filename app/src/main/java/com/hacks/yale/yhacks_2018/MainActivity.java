@@ -1,7 +1,9 @@
 package com.hacks.yale.yhacks_2018;
 
+import android.app.NotificationManager;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
@@ -16,14 +18,21 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+
+import com.hacks.yale.yhacks_2018.notification.NotificationService;
 import com.hacks.yale.yhacks_2018.ocr.OCRCaptureActivity;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+    private final static String APP_PACKAGE = "com.alexzh.tutorial.notificationdemo";
+    private final static String CITIES_CHANEL_ID = APP_PACKAGE + ".CITIES_CHANNEL";
+    private final static String APP_CHANEL_ID = APP_PACKAGE + ".APP_CHANNEL";
 
     public static final String TEST_RESULT = "TEST_RESULT";
     private static final int TEST_RESPONSE = 1;
+    private int countdown = 5000;
+    NotificationService notificationService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,10 +67,28 @@ public class MainActivity extends AppCompatActivity
             alerts.add(new Alert("hi", "bye"));
         }
 
-
         MainAdapter adapter = new MainAdapter(alerts);
         rvMain.setAdapter(adapter);
         rvMain.setLayoutManager(new LinearLayoutManager(this));
+
+        // Begin notifications demo
+        NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+        notificationService = new NotificationService(this, notificationManager);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+
+        final Handler handler = new Handler();
+        Log.i("onStop called ", "--=-=-=-=-=-");
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Log.i("countdown ", "--=-=-=-=-=-");
+                notificationService.showNotification();
+            }
+        }, countdown);
     }
 
     @Override

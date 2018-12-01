@@ -27,6 +27,10 @@
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <activity
+            android:name=".notification.AppNotification"
+            android:label="@string/title_activity_notification">
+        </activity>
+        <activity
             android:name=".ocr.OCRCaptureActivity"
             android:label="@string/title_activity_camera"
             android:theme="@style/AppTheme.NoActionBar">
@@ -34,7 +38,8 @@
         <activity
             android:name=".DrugActivity"
             android:label="@string/title_activity_drug"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
     </application>
 
 </manifest>

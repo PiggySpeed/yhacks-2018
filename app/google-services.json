@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "372376620503",
+    "firebase_url": "https://polypharmacy-app.firebaseio.com",
+    "project_id": "polypharmacy-app",
+    "storage_bucket": "polypharmacy-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:372376620503:android:ba5a31fd0575a7aa",
+        "android_client_info": {
+          "package_name": "com.hacks.yale.yhacks_2018"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "372376620503-os0mgah2io355mk8k8dio1cs07nu5obf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA4AZiF3UQISucTGqsWgMzmdS-1PrbNdaI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

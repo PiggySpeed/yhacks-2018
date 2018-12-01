@@ -1,10 +1,13 @@
 package com.hacks.yale.yhacks_2018.ocr;
 
 import android.content.Intent;
+import android.util.Log;
 import android.util.SparseArray;
+import android.widget.TextView;
 
 import com.google.android.gms.vision.Detector;
 import com.google.android.gms.vision.text.TextBlock;
+import com.hacks.yale.yhacks_2018.R;
 import com.hacks.yale.yhacks_2018.camera.GraphicOverlay;
 
 import java.util.ArrayList;
@@ -19,10 +22,12 @@ public class OCRDetectorProcessor2 implements Detector.Processor<TextBlock> {
     private OCRParser parser;
     private OCRCaptureActivity ocrCaptureActivity;
     private HashMap<String, Integer> drugsFoundSoFar;
+    private int numDrugsSoFar;
     private Timer timer;
     private int timerDuration;
     private int timerDurationInMilliSeconds;
     private int startingTimerDurationInMilliSeconds;
+    private TextView drugCounter;
 //    private ProgressBar progressBar;
 
     public OCRDetectorProcessor2(GraphicOverlay<OCRGraphic> ocrGraphicOverlay, OCRCaptureActivity ocrCaptureActivity1) {
@@ -30,12 +35,14 @@ public class OCRDetectorProcessor2 implements Detector.Processor<TextBlock> {
         ocrCaptureActivity = ocrCaptureActivity1;
         parser = new OCRParser();
         drugsFoundSoFar = new HashMap<>();
+        numDrugsSoFar = 0;
         timer = new Timer();
-        timerDuration = 20;
-        timerDurationInMilliSeconds = 20000;
-        startingTimerDurationInMilliSeconds = 20000;
+        timerDuration = 30;
+        timerDurationInMilliSeconds = 30000;
+        startingTimerDurationInMilliSeconds = 30000;
 
-//        progressBar = ocrCaptureActivity1.findViewById(R.id.determinateBar);
+//        drugCounter = ocrCaptureActivity1.findViewById(R.id.drug_count);
+        //        progressBar = ocrCaptureActivity1.findViewById(R.id.determinateBar);
 //        setProgressBarValues();
     }
 
@@ -58,11 +65,19 @@ public class OCRDetectorProcessor2 implements Detector.Processor<TextBlock> {
             drugsFoundSoFar.put(ndcCodes.get(i), newCount);
         }
 
+        // update current drug count
+        int numDrugs = drugsFoundSoFar.size();
+        if (numDrugs != numDrugsSoFar) {
+            Log.i("------ numDrugs: ", numDrugs + "");
+//            ocrCaptureActivity.incrementDrugCount(Integer.toString(numDrugs));
+//            drugCounter.setText("awef");
+        }
+
+        // if the item is an NDC seen before, highlight it
         for (int i = 0; i < items.size(); ++i) {
             TextBlock item = items.valueAt(i);
             String text = item.getValue().trim();
 
-            // If the item contains a NDC seen before, highlight its box
             if (drugsFoundSoFar.containsKey(text)) {
                 graphic = new OCRGraphic(graphicOverlay, item, true);
             } else {
@@ -73,7 +88,7 @@ public class OCRDetectorProcessor2 implements Detector.Processor<TextBlock> {
         }
 
         // if counter is 0, then stop activity and sent to API
-        timer.scheduleAtFixedRate(new TimerTask() {
+        timer.schedule(new TimerTask() {
             public void run() {
                 if (setInterval() < 1) {
                     Intent intent = new Intent();
@@ -84,7 +99,7 @@ public class OCRDetectorProcessor2 implements Detector.Processor<TextBlock> {
                 }
 //                progressBar.setProgress((int) ((startingTimerDurationInMilliSeconds - timerDurationInMilliSeconds) / 50));
             }
-        }, 1000, 1000);
+        }, 1000);
     }
 
     /* Cleanly get rid of resources when TextRecognizer is disposed of */
