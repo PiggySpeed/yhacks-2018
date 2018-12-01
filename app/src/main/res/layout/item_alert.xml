@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/itemAlert"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <android.support.v7.widget.CardView
+
+        android:id="@+id/cardView"
+        android:layout_width="380dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="10dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="60dp"
+        app:cardBackgroundColor="@android:color/background_light"
+        app:cardCornerRadius="4dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/alertIcon"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="10dp"
+                android:background="@drawable/ic_alert" />
+
+            <TextView
+                android:id="@+id/alertTitle"
+                android:layout_width="300dp"
+                android:layout_height="100dp"
+                android:layout_marginLeft="15dp"
+                android:layout_toRightOf="@id/alertIcon"
+                android:text="Shortage Alert"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/alertDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/alertIcon"
+                android:layout_marginLeft="10dp"
+                android:text="Description" />
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+</RelativeLayout>
