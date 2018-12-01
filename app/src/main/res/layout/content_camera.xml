@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".camera.CameraActivity"
+    tools:showIn="@layout/activity_camera">
+
+    <com.hacks.yale.yhacks_2018.camera.CameraSourcePreview
+        android:id="@+id/camera_preview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.hacks.yale.yhacks_2018.camera.GraphicOverlay
+            android:id="@+id/graphicOverlay"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </com.hacks.yale.yhacks_2018.camera.CameraSourcePreview>
+    <!--<ProgressBar-->
+    <!--android:id="@+id/determinateBar"-->
+    <!--style="@android:style/Widget.ProgressBar.Horizontal"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:maxHeight="4dp"-->
+    <!--android:progress="25"/>-->
+
+
+</LinearLayout>

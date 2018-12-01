@@ -1,6 +1,5 @@
 package com.hacks.yale.yhacks_2018;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -9,17 +8,18 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-
+import com.hacks.yale.yhacks_2018.ocr.OCRCaptureActivity;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    public static final String TEST_RESULT = "TEST_RESULT";
+    private static final int TEST_RESPONSE = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,25 +91,32 @@ public class MainActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
-    @SuppressWarnings("StatementWithEmptyBody")
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode == RESULT_OK) {
+            Log.i("RESULT OK", "-----------------------");
+            if (requestCode == TEST_RESPONSE) {
+                Log.i("TEST RESPONSE", "-----------------------");
+            }
+        }
+    }
+
+
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
         if (id == R.id.nav_camera) {
-            // Handle the camera action
+            Intent intent = new Intent(MainActivity.this, OCRCaptureActivity.class);
+            startActivityForResult(intent, TEST_RESPONSE);
         } else if (id == R.id.nav_gallery) {
             Intent i = new Intent(this, DrugActivity.class);
             startActivity(i);
         } else if (id == R.id.nav_slideshow) {
-
         } else if (id == R.id.nav_manage) {
-
         } else if (id == R.id.nav_share) {
-
         } else if (id == R.id.nav_send) {
-
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
