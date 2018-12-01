@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.CollapsingToolbarLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="8dp">
+
+        <LinearLayout
+            android:id="@+id/list_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <TextView
+                android:layout_height="32dp"
+                android:layout_width="match_parent"
+                android:text="Hello World 1"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp" />
+            <TextView
+                android:layout_height="32dp"
+                android:layout_width="match_parent"
+                android:text="Hello World 2"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp" />
+            <TextView
+                android:layout_height="32dp"
+                android:layout_width="match_parent"
+                android:text="Hello World 3"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+</android.support.constraint.CollapsingToolbarLayout>

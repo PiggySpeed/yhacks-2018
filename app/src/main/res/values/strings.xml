@@ -1,4 +1,5 @@
 <resources>
+    <!-- Navigation Drawer -->
     <string name="app_name">yhacks-2018</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -6,4 +7,13 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
+
+    <!-- Camera/OCR -->
+    <string name="title_activity_camera">Camera Activity</string>
+    <string name="low_storage_error">Low Storage</string>
+    <string name="permission_camera_rationale">Access to the camera is needed for detection</string>
+    <string name="no_camera_permission">This application cannot run because it does not have the camera permission. The application will now exit.</string>
+
+    <!-- General Use -->
+    <string name="ok">OK</string>
 </resources>
