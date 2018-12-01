@@ -18,9 +18,9 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-
 import com.hacks.yale.yhacks_2018.notification.NotificationService;
 import com.hacks.yale.yhacks_2018.ocr.OCRCaptureActivity;
+
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity
@@ -141,10 +141,12 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.nav_camera) {
             Intent intent = new Intent(MainActivity.this, OCRCaptureActivity.class);
             startActivityForResult(intent, TEST_RESPONSE);
-        } else if (id == R.id.nav_gallery) {
-            Intent i = new Intent(this, DrugActivity.class);
-            startActivity(i);
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.nav_drugs) {
+            Intent intent = new Intent(this, DrugActivity.class);
+            startActivity(intent);
+        } else if (id == R.id.nav_alerts) {
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
         } else if (id == R.id.nav_manage) {
         } else if (id == R.id.nav_share) {
         } else if (id == R.id.nav_send) {
