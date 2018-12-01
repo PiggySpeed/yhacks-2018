@@ -9,8 +9,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
-
 import java.util.List;
 
 public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder>{
@@ -52,14 +50,10 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder>{
         Alert alert = mAlerts.get(position);
 
         TextView tvTitle = viewHolder.tvTitle;
-        tvTitle.setText("Storage Alert");
+        tvTitle.setText("Shortage Alert");
 
         TextView tvDescription = viewHolder.tvDescription;
         tvDescription.setText("description");
-
-        ImageView ivAlert = viewHolder.ivIcon;
-
-        Glide.with(context).load(R.drawable.ic_alert).into(ivAlert);
     }
 
     @Override
