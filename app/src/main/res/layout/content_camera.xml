@@ -19,6 +19,12 @@
             android:layout_height="match_parent" />
 
     </com.hacks.yale.yhacks_2018.camera.CameraSourcePreview>
+    <!--<ProgressBar-->
+    <!--android:id="@+id/determinateBar"-->
+    <!--style="@android:style/Widget.ProgressBar.Horizontal"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:maxHeight="4dp"-->
+    <!--android:progress="25"/>-->
 
 
 </LinearLayout>

@@ -1,6 +1,5 @@
 package com.hacks.yale.yhacks_2018.ocr;
 
-import android.util.Log;
 import android.util.SparseArray;
 
 import com.google.android.gms.vision.Detector;
@@ -16,6 +15,7 @@ public class OCRDetectorProcessor implements Detector.Processor<TextBlock> {
         parser = new OCRParser();
     }
 
+    // TODO: don't know why we do receiveDetections in OCRDetectorProcessor2 as well
     /* Receives TextBlocks from the TextRecognizer as they become available */
     @Override
     public void receiveDetections(Detector.Detections<TextBlock> detections) {
@@ -24,8 +24,7 @@ public class OCRDetectorProcessor implements Detector.Processor<TextBlock> {
         for (int i = 0; i < items.size(); ++i) {
             TextBlock item = items.valueAt(i);
             if (item != null && item.getValue() != null) {
-                Log.d("Processor", "Text detected! " + item.getValue());
-                OCRGraphic graphic = new OCRGraphic(graphicOverlay, item);
+                OCRGraphic graphic = new OCRGraphic(graphicOverlay, item, false);
                 graphicOverlay.add(graphic);
             }
         }

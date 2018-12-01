@@ -12,27 +12,37 @@ public class OCRGraphic extends GraphicOverlay.Graphic {
 
     private int id;
 
-    private static final int TEXT_COLOR = Color.GREEN;
-
+    private static final int COLOR_NORMAL = Color.WHITE;
+    private static final int COLOR_HIGHLIGHT = Color.GREEN;
     private static Paint rectPaint;
     private static Paint textPaint;
     private final TextBlock text;
+    private boolean isHighlighted;
 
-    OCRGraphic(GraphicOverlay overlay, TextBlock text) {
+    OCRGraphic(GraphicOverlay overlay, TextBlock text, boolean isHighlighted) {
         super(overlay);
 
         this.text = text;
+        this.isHighlighted = isHighlighted;
 
         if (rectPaint == null) {
             rectPaint = new Paint();
-            rectPaint.setColor(TEXT_COLOR);
+            if (isHighlighted) {
+                rectPaint.setColor(COLOR_HIGHLIGHT);
+            } else {
+                rectPaint.setColor(COLOR_NORMAL);
+            }
             rectPaint.setStyle(Paint.Style.STROKE);
             rectPaint.setStrokeWidth(4.0f);
         }
 
         if (textPaint == null) {
             textPaint = new Paint();
-            textPaint.setColor(TEXT_COLOR);
+            if (isHighlighted) {
+                rectPaint.setColor(COLOR_HIGHLIGHT);
+            } else {
+                rectPaint.setColor(COLOR_NORMAL);
+            }
             textPaint.setTextSize(52.0f);
         }
         // Redraw the overlay, as this graphic has been added.
@@ -72,6 +82,23 @@ public class OCRGraphic extends GraphicOverlay.Graphic {
         if (text == null) {
             return;
         }
+
+        rectPaint = new Paint();
+        if (isHighlighted) {
+            rectPaint.setColor(COLOR_HIGHLIGHT);
+        } else {
+            rectPaint.setColor(COLOR_NORMAL);
+        }
+        rectPaint.setStyle(Paint.Style.STROKE);
+        rectPaint.setStrokeWidth(4.0f);
+
+        textPaint = new Paint();
+        if (isHighlighted) {
+            textPaint.setColor(COLOR_HIGHLIGHT);
+        } else {
+            textPaint.setColor(COLOR_NORMAL);
+        }
+        textPaint.setTextSize(52.0f);
 
         // Draws the bounding box around the TextBlock.
         RectF rect = new RectF(text.getBoundingBox());
