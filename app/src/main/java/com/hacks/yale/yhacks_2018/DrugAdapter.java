@@ -1,65 +1,73 @@
 package com.hacks.yale.yhacks_2018;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.bignerdranch.expandablerecyclerview.Adapter.ExpandableRecyclerAdapter;
+import com.bignerdranch.expandablerecyclerview.Model.ParentListItem;
+import com.bignerdranch.expandablerecyclerview.ViewHolder.ChildViewHolder;
+import com.bignerdranch.expandablerecyclerview.ViewHolder.ParentViewHolder;
+
 import java.util.List;
 
-public class DrugAdapter extends RecyclerView.Adapter<DrugAdapter.ViewHolder>{
-    Context context;
-    public class ViewHolder extends RecyclerView.ViewHolder {
+public class DrugAdapter extends ExpandableRecyclerAdapter<DrugAdapter.MyParentViewHolder, DrugAdapter.MyChildViewHolder> {
+    private LayoutInflater mInflater;
+    List<Drug> mDrugs;
+
+    public DrugAdapter(Context context, List<Drug> drugs) {
+        super(drugs);
+        mInflater = LayoutInflater.from(context);
+        mDrugs = drugs;
+    }
+
+    public class MyParentViewHolder extends ParentViewHolder {
         public TextView tvName;
         public TextView tvDosage;
         public TextView tvNDC;
 
-        public ViewHolder(View itemView) {
+        public MyParentViewHolder(View itemView) {
             super(itemView);
 
             tvName = (TextView) itemView.findViewById(R.id.drugName);
             tvDosage = (TextView) itemView.findViewById(R.id.drugDosage);
             tvNDC = (TextView) itemView.findViewById(R.id.drugNDC);
         }
-
-    }
-    private List<Drug> mDrugs;
-
-    public DrugAdapter(List<Drug> drugs) {
-        mDrugs = drugs;
     }
 
-    @NonNull
+    public class MyChildViewHolder extends ChildViewHolder {
+        public TextView childField;
+        public MyChildViewHolder(View itemView) {
+            super(itemView);
+            childField = (TextView) itemView.findViewById(R.id.childField);
+        }
+    }
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        context = viewGroup.getContext();
-        LayoutInflater inflater = LayoutInflater.from(context);
-        View drugView = inflater.inflate(R.layout.item_drug, viewGroup, false);
-
-        ViewHolder viewHolder = new ViewHolder(drugView);
-        return viewHolder;
-    }
-
-    // populating the data into item through holder
-    @Override
-    public void onBindViewHolder(@NonNull DrugAdapter.ViewHolder viewHolder, int position) {
-        Drug drug = mDrugs.get(position);
-
-        TextView tvName = viewHolder.tvName;
-        tvName.setText(drug.getName());
-
-        TextView tvDosage = viewHolder.tvDosage;
-        tvDosage.setText(drug.getDosage() + " mg");
-
-        TextView tvNDC = viewHolder.tvNDC;
-        tvNDC.setText("NDC: " + drug.getNDC());
+    public MyParentViewHolder onCreateParentViewHolder(ViewGroup viewGroup) {
+        View view = mInflater.inflate(R.layout.item_drug, viewGroup, false);
+        return new MyParentViewHolder(view);
     }
 
     @Override
-    public int getItemCount() {
-        return mDrugs.size();
+    public MyChildViewHolder onCreateChildViewHolder(ViewGroup viewGroup) {
+        View view = mInflater.inflate(R.layout.item_drug_detailed, viewGroup, false);
+        return new MyChildViewHolder(view);
+    }
+
+    @Override
+    public void onBindParentViewHolder(MyParentViewHolder parentViewHolder, int position, ParentListItem parentListItem) {
+        Drug drug = (Drug) parentListItem;
+        parentViewHolder.tvName.setText(drug.getName());
+        parentViewHolder.tvDosage.setText(drug.getDosage());
+        parentViewHolder.tvNDC.setText(drug.getNDC());
+
+    }
+
+    @Override
+    public void onBindChildViewHolder(DrugAdapter.MyChildViewHolder childViewHolder, int position, Object childListItem) {
+        DrugDetailed drugDetailed = (DrugDetailed) childListItem;
+        childViewHolder.childField.setText(drugDetailed.getTitle());
     }
 }

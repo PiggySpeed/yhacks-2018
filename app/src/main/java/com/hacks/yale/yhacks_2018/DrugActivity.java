@@ -20,6 +20,7 @@ import android.view.View;
 import com.hacks.yale.yhacks_2018.ocr.OCRCaptureActivity;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class DrugActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
     private static final int TEST_RESPONSE = 1;
@@ -57,8 +58,20 @@ public class DrugActivity extends AppCompatActivity implements NavigationView.On
             drugs.add(new Drug("Amoxicillin", 500, "dummy"));
         }
 
+        List<Drug> parentListItems = new ArrayList<>();
+        for (Drug drug : drugs) {
+            List<DrugDetailed> childListItems = new ArrayList<>();
+            childListItems.add(new DrugDetailed("detail 1"));
+            childListItems.add(new DrugDetailed("detail 2"));
+            childListItems.add(new DrugDetailed("detail 3"));
+            childListItems.add(new DrugDetailed("detail 4"));
+            childListItems.add(new DrugDetailed("detail 5"));
 
-        DrugAdapter adapter = new DrugAdapter(drugs);
+            drug.setmChildItemList(childListItems);
+            parentListItems.add(drug);
+        }
+
+        DrugAdapter adapter = new DrugAdapter(this, drugs);
         rvMain.setAdapter(adapter);
         rvMain.setLayoutManager(new LinearLayoutManager(this));
     }
