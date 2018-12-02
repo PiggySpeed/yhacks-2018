@@ -25,7 +25,6 @@ public class DrugActivity extends AppCompatActivity implements NavigationView.On
     private DrugAdapter adapter;
     private RecyclerView rvMain;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -8,6 +8,8 @@ import android.widget.TextView;
 import com.google.android.gms.vision.Detector;
 import com.google.android.gms.vision.text.TextBlock;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.hacks.yale.yhacks_2018.DrugActivity;
+import com.hacks.yale.yhacks_2018.MainActivity;
 import com.hacks.yale.yhacks_2018.camera.GraphicOverlay;
 import com.hacks.yale.yhacks_2018.firebase.Sync;
 import com.hacks.yale.yhacks_2018.firebase.Upload;
@@ -31,6 +33,7 @@ public class OCRDetectorProcessor2 implements Detector.Processor<TextBlock> {
     private int startingTimerDurationInMilliSeconds;
     private TextView drugCounter;
     private Upload uploadManager;
+
 //    private ProgressBar progressBar;
 
     public OCRDetectorProcessor2(GraphicOverlay<OCRGraphic> ocrGraphicOverlay, OCRCaptureActivity ocrCaptureActivity1) {
@@ -94,35 +97,18 @@ public class OCRDetectorProcessor2 implements Detector.Processor<TextBlock> {
         // if counter is 0, then stop activity and sent to API
         timer.schedule(new TimerTask() {
             public void run() {
-                if (setInterval() == 1) {
-                    Intent intent = new Intent();
-                    // TODO: pass data through here and trigger opening of drug list
-                    ArrayList<String> ndcCodes = new ArrayList<>();
+            if (setInterval() == 1) {
+                // TODO: pass data through here and trigger opening of drug list
+                ArrayList<String> ndcCodes = new ArrayList<>();
 
-                    Log.i("FINISHED UPLOADING!", "------------------");
-                    String result = "";
-                    for (String key : drugsFoundSoFar.keySet()) {
-                        Log.i("key", key);
-                        ndcCodes.add(key);
-                        result = result + " ";
-                        result = result + key;
-                    }
-
-                    HashMap<String, ArrayList<String>> data = new HashMap<>();
-                    data.put("result", ndcCodes);
-
-//                    FirebaseFirestore db = FirebaseFirestore.getInstance();
-//                    Sync mSync = new Sync(db);
-//                    Log.i("investigated:", result);
-                    uploadManager.uploadDrugs(data);
-
-
-
-                    ocrCaptureActivity.setResult(RESULT_OK, intent);
-                    ocrCaptureActivity.finish();
-//                    setProgressBarValues();
+                for (String key : drugsFoundSoFar.keySet()) {
+                    Log.i("key", key);
+                    ndcCodes.add(key);
                 }
-//                progressBar.setProgress((int) ((startingTimerDurationInMilliSeconds - timerDurationInMilliSeconds) / 50));
+                Intent intent = new Intent();
+                ocrCaptureActivity.setResult(RESULT_OK, intent);
+                ocrCaptureActivity.finish();
+            }
             }
         }, 1000);
     }

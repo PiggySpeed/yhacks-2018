@@ -20,31 +20,74 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <TextView
-                android:id="@+id/drugName"
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:layout_toRightOf="@id/alertIcon"
-                android:text="Drug Name"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/drugName"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_toRightOf="@id/alertIcon"
+                    android:text="Drug Name"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
-            <TextView
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:id="@+id/drugDosage"
-                android:text="Dosage"
-                android:textSize="15sp"
-                android:layout_toRightOf="@id/drugName"/>
+                <TextView
+                    android:id="@+id/drugDosage"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="Dosage"
+                    android:textSize="15sp"
+                    android:layout_toEndOf="@id/drugName"/>
 
-            <TextView
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:id="@+id/drugNDC"
-                android:text="NDC"
-                android:textSize="15sp"
-                android:layout_toRightOf="@id/drugDosage"/>
+                <TextView
+                    android:layout_toEndOf="@id/drugDosage"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/drugNDC"
+                    android:text="NDC"
+                    android:textSize="15sp" />
+
+                <ImageButton
+                    android:id="@+id/btnEmail"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_alignEnd="@+id/drugNDC"
+                    android:layout_below="@id/drugNDC"
+                    android:background="@drawable/ic_menu_send" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/drugQTY"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:text="QTY"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/drugRoute"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="Route"
+                    android:textSize="15sp"
+                    android:layout_toEndOf="@id/drugQTY"/>
+
+                <TextView
+                    android:id="@+id/drugFrequency"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:text="Frequency"
+                    android:textSize="15sp"
+                    android:layout_toEndOf="@id/drugRoute"/>
+            </LinearLayout>
 
             <!--<com.google.android.material.chip.Chip-->
                 <!--style="@style/Widget.MaterialComponents.Chip.Entry"-->
@@ -57,13 +100,6 @@
                 <!--android:text="hello world"-->
                 <!--app:chipIcon="@drawable/ic_menu_share" />-->
 
-            <ImageButton
-                android:id="@+id/btnEmail"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_alignEnd="@+id/drugNDC"
-                android:layout_below="@id/drugNDC"
-                android:background="@drawable/ic_menu_send" />
 
         </RelativeLayout>
     </android.support.v7.widget.CardView>

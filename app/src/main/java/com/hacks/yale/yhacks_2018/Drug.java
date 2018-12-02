@@ -34,6 +34,12 @@ public class Drug implements ParentListItem {
     }
     public String getDosage() {return mDosage;}
     public String getNDC() {return mNDC; }
+    public String getQTY() {return mQTY; }
+    public String getRoute() {return mRoute; }
+    public String getFrequency() {return mFrequency; }
+    public String getTag() {return mTag; }
+    public String getShortDescription() {return mShortDescription; }
+    public String getLongDescription() {return mLongDescription; }
 
     @Override
     public List<DrugDetailed> getChildItemList() {

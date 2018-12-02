@@ -34,6 +34,13 @@ public class DrugAdapter extends ExpandableRecyclerAdapter<DrugAdapter.MyParentV
         public TextView tvName;
         public TextView tvDosage;
         public TextView tvNDC;
+        public TextView tvQTY;
+        public TextView tvRoute;
+        public TextView tvFrequency;
+        public TextView tvTag;
+        public TextView tvShortDescription;
+        public TextView tvLongDescription;
+
         public ImageButton btnEmail;
 
         public MyParentViewHolder(View itemView) {
@@ -42,6 +49,12 @@ public class DrugAdapter extends ExpandableRecyclerAdapter<DrugAdapter.MyParentV
             tvName = (TextView) itemView.findViewById(R.id.drugName);
             tvDosage = (TextView) itemView.findViewById(R.id.drugDosage);
             tvNDC = (TextView) itemView.findViewById(R.id.drugNDC);
+            tvQTY = (TextView) itemView.findViewById(R.id.drugQTY);
+            tvRoute = (TextView) itemView.findViewById(R.id.drugRoute);
+            tvFrequency = (TextView) itemView.findViewById(R.id.drugFrequency);
+            tvTag= (TextView) itemView.findViewById(R.id.drugTag);
+            tvShortDescription = (TextView) itemView.findViewById(R.id.drugShortDescription);
+            tvLongDescription = (TextView) itemView.findViewById(R.id.drugLongDescription);
 
             btnEmail = (ImageButton) itemView.findViewById(R.id.btnEmail);
             btnEmail.setOnClickListener(new View.OnClickListener() {
@@ -80,8 +93,8 @@ public class DrugAdapter extends ExpandableRecyclerAdapter<DrugAdapter.MyParentV
         public MyChildViewHolder(View itemView) {
             super(itemView);
 
-            tvChildField = (TextView) itemView.findViewById(R.id.tvChildField);
-            tvChildField.setText("This drug is used to treat diabetes.");
+//            tvChildField = (TextView) itemView.findViewById(R.id.tvChildField);
+//            tvChildField.setText("This drug is used to treat diabetes.");
         }
     }
 
@@ -104,7 +117,12 @@ public class DrugAdapter extends ExpandableRecyclerAdapter<DrugAdapter.MyParentV
         parentViewHolder.tvName.setText(drug.getName());
         parentViewHolder.tvDosage.setText(drug.getDosage());
         parentViewHolder.tvNDC.setText(drug.getNDC());
-
+        parentViewHolder.tvQTY.setText(drug.getQTY());
+        parentViewHolder.tvRoute.setText(drug.getRoute());
+        parentViewHolder.tvFrequency.setText(drug.getFrequency());
+        parentViewHolder.tvTag.setText(drug.getTag());
+        parentViewHolder.tvShortDescription.setText(drug.getShortDescription());
+        parentViewHolder.tvLongDescription.setText(drug.getLongDescription());
     }
 
     @Override

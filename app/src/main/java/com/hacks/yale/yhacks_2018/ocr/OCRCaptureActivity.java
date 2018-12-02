@@ -40,6 +40,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.hacks.yale.yhacks_2018.DrugActivity;
 import com.hacks.yale.yhacks_2018.R;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
@@ -47,8 +48,10 @@ import com.google.android.gms.vision.text.TextRecognizer;
 import com.hacks.yale.yhacks_2018.camera.CameraSource;
 import com.hacks.yale.yhacks_2018.camera.CameraSourcePreview;
 import com.hacks.yale.yhacks_2018.camera.GraphicOverlay;
+import com.hacks.yale.yhacks_2018.patient.PatientActivity;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 /**
  * Activity for the Ocr Detecting app.  This app detects text and displays the value with the
@@ -79,6 +82,16 @@ public final class OCRCaptureActivity extends AppCompatActivity {
 
     // A TextToSpeech engine for speaking a String value.
     private TextToSpeech tts;
+
+
+//    public void openDrugList(ArrayList<String> codes) {
+//        DrugActivity list = new DrugActivity();
+//        Intent intent = new Intent(this, list.getClass());
+//        list.renderDrugList(codes);
+//        startActivity(intent);
+//        setResult(RESULT_OK, intent);
+//        finish();
+//    }
 
     /**
      * Initializes the UI and creates the detector pipeline.
