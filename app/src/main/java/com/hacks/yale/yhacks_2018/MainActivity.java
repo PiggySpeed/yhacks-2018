@@ -1,12 +1,11 @@
 package com.hacks.yale.yhacks_2018;
 
+import android.app.ActionBar;
 import android.app.NotificationManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -17,21 +16,19 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
+
+import com.hacks.yale.yhacks_2018.firebase.PatientInfo;
 import com.hacks.yale.yhacks_2018.notification.NotificationService;
 import com.hacks.yale.yhacks_2018.ocr.OCRCaptureActivity;
+import com.hacks.yale.yhacks_2018.patient.PatientActivity;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
-    private final static String APP_PACKAGE = "com.alexzh.tutorial.notificationdemo";
-    private final static String CITIES_CHANEL_ID = APP_PACKAGE + ".CITIES_CHANNEL";
-    private final static String APP_CHANEL_ID = APP_PACKAGE + ".APP_CHANNEL";
-
-    public static final String TEST_RESULT = "TEST_RESULT";
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private static final int TEST_RESPONSE = 1;
     private int countdown = 5000;
+    private PatientInfo patient;
+    private PatientActivity patientActivity;
     NotificationService notificationService;
 
     @Override
@@ -50,7 +47,21 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        // initialize the patient
+        ArrayList<String> allergies = new ArrayList<>();
+        allergies.add("cephalosporins");
 
+        ArrayList<String> conditions = new ArrayList<>();
+        conditions.add("hypertension");
+        conditions.add("T2DM");
+
+        ArrayList<String> medications = new ArrayList<>();
+        medications.add("65862-010-01");
+        medications.add("68071-4133-03");
+
+        patient = new PatientInfo("John Lee", 89, 65, "Male", 26, allergies , conditions, medications);
+
+        // Recycler view stuff
         RecyclerView rvMain = (RecyclerView) findViewById(R.id.rvMain);
 
         ArrayList<Alert> alerts = new ArrayList<Alert>();
@@ -65,6 +76,13 @@ public class MainActivity extends AppCompatActivity
         // Begin notifications demo
         NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
         notificationService = new NotificationService(this, notificationManager);
+
+        // disable navigation drawer button
+        ActionBar actionBar = getActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(false);
+        }
+
     }
 
     @Override
@@ -86,7 +104,7 @@ public class MainActivity extends AppCompatActivity
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
+            drawer.closeDrawer(GravityCompat.END);
         } else {
             super.onBackPressed();
         }
@@ -123,7 +141,6 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
@@ -140,11 +157,15 @@ public class MainActivity extends AppCompatActivity
             startActivity(intent);
         } else if (id == R.id.nav_manage) {
         } else if (id == R.id.nav_share) {
+            PatientActivity patientActivity = new PatientActivity();
+            patientActivity.loadPatient(patient);
+            Intent intent = new Intent(this, PatientActivity.class);
+            startActivity(intent);
         } else if (id == R.id.nav_send) {
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
+        drawer.closeDrawer(GravityCompat.END);
         return true;
     }
 }

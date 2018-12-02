@@ -6,18 +6,19 @@ public class PatientInfo {
 
         private String name;
         private int age;
+        private int weight;
         private String sex;
         private int GFR;
         private ArrayList<String> allergies = new ArrayList<>();
         private ArrayList<String> conditions = new ArrayList<>();
         private ArrayList<String> medications = new ArrayList<>();
 
-        public PatientInfo() {
-        }
+        public PatientInfo() {}
 
-        public PatientInfo(String name, int age, String sex, int GFR, ArrayList<String> allergies, ArrayList<String> conditions, ArrayList<String> medications) {
+        public PatientInfo(String name, int age, int weight, String sex, int GFR, ArrayList<String> allergies, ArrayList<String> conditions, ArrayList<String> medications) {
             this.name = name;
             this.age = age;
+            this.weight = weight;
             this.sex = sex;
             this.GFR = GFR;
             this.allergies = allergies;
@@ -40,6 +41,10 @@ public class PatientInfo {
         public void setAge(int age) {
             this.age = age;
         }
+
+        public int getWeight() {return weight; }
+
+        public void setWeight(int weight) { this.weight = weight; }
 
         public String getSex() {
             return sex;

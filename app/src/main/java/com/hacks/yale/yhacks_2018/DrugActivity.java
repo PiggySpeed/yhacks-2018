@@ -111,7 +111,7 @@ public class DrugActivity extends AppCompatActivity implements NavigationView.On
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
+            drawer.closeDrawer(GravityCompat.END);
         } else {
             super.onBackPressed();
         }
@@ -166,7 +166,7 @@ public class DrugActivity extends AppCompatActivity implements NavigationView.On
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
+        drawer.closeDrawer(GravityCompat.END);
         return true;
     }
 }

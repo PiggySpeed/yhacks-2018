@@ -22,7 +22,7 @@ public class Upload {
     }
 
     //update patient info
-    public void uploadParts (String name, int age, String sex, int GFR, ArrayList<String> allergies, ArrayList<String> conditions, ArrayList<String> medications) {
+    public void uploadParts (String name, int age, int weight, String sex, int GFR, ArrayList<String> allergies, ArrayList<String> conditions, ArrayList<String> medications) {
         Map<String, Object> docData = new HashMap<>();
 
         if (name != null) {
@@ -31,6 +31,10 @@ public class Upload {
 
         if (age != -1) {
             docData.put("age", age);
+        }
+
+        if (weight != -1) {
+            docData.put("weight", weight);
         }
 
         if (sex != null) {

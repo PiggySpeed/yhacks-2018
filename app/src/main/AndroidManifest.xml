@@ -37,6 +37,11 @@
             android:label="@string/title_activity_drug"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
+        <activity
+            android:name=".patient.PatientActivity"
+            android:label="@string/title_activity_patient"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
     </application>
 
 </manifest>

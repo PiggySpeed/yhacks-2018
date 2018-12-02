@@ -35,7 +35,7 @@ public class RuleFunctions extends AppCompatActivity {
         medications.add("0002-3229");
 
         // DUMMY PATIENT
-        PatientInfo patient1 = new PatientInfo("John Lee", 89, "Male", 60, allergies , conditions, medications);
+        PatientInfo patient1 = new PatientInfo("John Lee", 89, 65, "Male", 60, allergies , conditions, medications);
 
         // HERE HERE HERE - WARNING/FLAGS!!! warnings[0] is index of drug in ydb, warnings[1] is code
         int[][] warnings = new int[ydb.length * rules.length][2];

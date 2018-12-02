@@ -16,6 +16,7 @@
 
     <!-- General Use -->
     <string name="ok">OK</string>
+    <string name="title_activity_patient">PatientActivity</string>
     <string name="title_activity_drug">DrugActivity</string>
     <string name="title_activity_notification">Notifications</string>
     <string name="large_text">
