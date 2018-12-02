@@ -84,14 +84,14 @@ public final class OCRCaptureActivity extends AppCompatActivity {
     private TextToSpeech tts;
 
 
-//    public void openDrugList(ArrayList<String> codes) {
-//        DrugActivity list = new DrugActivity();
-//        Intent intent = new Intent(this, list.getClass());
-//        list.renderDrugList(codes);
-//        startActivity(intent);
-//        setResult(RESULT_OK, intent);
-//        finish();
-//    }
+    public void openDrugList(ArrayList<String> codes) {
+        DrugActivity list = new DrugActivity();
+        Intent intent = new Intent(this, list.getClass());
+        list.renderDrugList(codes);
+        startActivity(intent);
+        setResult(RESULT_OK, intent);
+        finish();
+    }
 
     /**
      * Initializes the UI and creates the detector pipeline.

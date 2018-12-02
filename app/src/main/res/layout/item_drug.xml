@@ -23,7 +23,7 @@
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="30dp">
                 <TextView
                     android:id="@+id/drugName"
                     android:layout_width="150dp"
@@ -62,7 +62,7 @@
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="100dp">
                 <TextView
                     android:id="@+id/drugQTY"
                     android:layout_width="100dp"

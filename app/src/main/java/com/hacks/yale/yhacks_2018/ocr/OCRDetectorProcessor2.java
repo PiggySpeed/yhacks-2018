@@ -102,13 +102,22 @@ public class OCRDetectorProcessor2 implements Detector.Processor<TextBlock> {
                 ArrayList<String> ndcCodes = new ArrayList<>();
 
                 for (String key : drugsFoundSoFar.keySet()) {
-                    Log.i("key", key);
-                    ndcCodes.add(key);
+                    String upToNCharacters = key.substring(0, Math.min(key.length(), 9));
+                    ndcCodes.add(upToNCharacters);
                 }
-                Intent intent = new Intent();
+
+                // first Activity
+
+//                Intent intent = new Intent(this, Page.class);
+//                intent.putExtra("arg", getText()); // getText() SHOULD NOT be static!!!
+//                startActivity(intent);
+
+                Intent intent = new Intent(ocrCaptureActivity, DrugActivity.class);
+                intent.putExtra("ndcCodes", ndcCodes);
                 ocrCaptureActivity.setResult(RESULT_OK, intent);
+                ocrCaptureActivity.startActivity(intent);
                 ocrCaptureActivity.finish();
-            }
+                }
             }
         }, 1000);
     }

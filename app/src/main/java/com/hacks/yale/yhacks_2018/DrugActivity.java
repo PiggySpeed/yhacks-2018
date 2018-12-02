@@ -44,6 +44,15 @@ public class DrugActivity extends AppCompatActivity implements NavigationView.On
         navigationView.setNavigationItemSelectedListener(this);
 
         rvMain = (RecyclerView) findViewById(R.id.rvDrug);
+
+        // second Activity
+        ArrayList<String> ndcCodes = getIntent().getExtras().getStringArrayList("ndcCodes");
+
+        for (int i = 0; i < ndcCodes.size(); i++) {
+            Log.i("tagggyyyyy", ndcCodes.get(i));
+        }
+
+        renderDrugList(ndcCodes);
     }
     //
 
