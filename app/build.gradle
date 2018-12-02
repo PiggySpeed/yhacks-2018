@@ -16,6 +16,9 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+    }
 }
 
 dependencies {
@@ -48,5 +51,3 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.7.1'
     compile 'com.lyft:lyft-android-sdk:1.0.3'
 }
-
-//apply plugin: 'com.google.gms.google-services'
