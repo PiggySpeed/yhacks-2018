@@ -2,37 +2,47 @@ package com.hacks.yale.yhacks_2018.patient;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.EditText;
 
 import com.hacks.yale.yhacks_2018.R;
+import com.hacks.yale.yhacks_2018.firebase.PatientInfo;
 import com.hacks.yale.yhacks_2018.firebase.Upload;
 
 import java.util.ArrayList;
 
-public class PatientProfile extends AppCompatActivity {
+public class PatientActivity extends AppCompatActivity {
     Upload uploadManager;
     String name;
     int age;
     int weight;
     String sex;
     int GFR;
+
     ArrayList<String> allergies;
     ArrayList<String> conditions;
     ArrayList<String> medications;
 
+    public PatientActivity() {}
+
+    public void loadPatient(PatientInfo patient) {
+        name = patient.getName();
+        age = patient.getAge();
+        weight = patient.getWeight();
+        sex = patient.getSex();
+        GFR = patient.getGFR();
+        allergies = patient.getAllergies();
+        conditions = patient.getConditions();
+        medications = patient.getMedications();
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_camera);
-        uploadManager = new Upload();
+        setContentView(R.layout.activity_patient);
+//        uploadManager = new Upload();
 
-        name = null;
-        age = -1;
-        weight = -1;
-        sex = null;
-        GFR = -1;
-        allergies = null;
-        conditions = null;
-        medications = null;
+//        EditText inputAge = findViewById(R.id.input_name);
+//        inputAge.setText(age);
     }
 
     public void updateAge(int age) {
@@ -58,12 +68,4 @@ public class PatientProfile extends AppCompatActivity {
     public void updateMedications(ArrayList<String> medications) {
         uploadManager.uploadParts(null, -1, -1,null, -1, null, null, medications);
     }
-
-    public String getName()                     { return name; }
-    public int getAge()                         { return age; }
-    public String getSex()                      { return sex; }
-    public int getGFR()                         { return GFR; }
-    public ArrayList<String> getAllergies()     { return allergies; }
-    public ArrayList<String> getConditions()    { return conditions; }
-    public ArrayList<String> getMedications()   { return medications; }
 }
