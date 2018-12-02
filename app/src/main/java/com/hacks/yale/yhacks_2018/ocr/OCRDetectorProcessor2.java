@@ -7,7 +7,10 @@ import android.widget.TextView;
 
 import com.google.android.gms.vision.Detector;
 import com.google.android.gms.vision.text.TextBlock;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.hacks.yale.yhacks_2018.camera.GraphicOverlay;
+import com.hacks.yale.yhacks_2018.firebase.Sync;
+import com.hacks.yale.yhacks_2018.firebase.Upload;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -27,6 +30,7 @@ public class OCRDetectorProcessor2 implements Detector.Processor<TextBlock> {
     private int timerDurationInMilliSeconds;
     private int startingTimerDurationInMilliSeconds;
     private TextView drugCounter;
+    private Upload uploadManager;
 //    private ProgressBar progressBar;
 
     public OCRDetectorProcessor2(GraphicOverlay<OCRGraphic> ocrGraphicOverlay, OCRCaptureActivity ocrCaptureActivity1) {
@@ -39,6 +43,7 @@ public class OCRDetectorProcessor2 implements Detector.Processor<TextBlock> {
         timerDuration = 30;
         timerDurationInMilliSeconds = 30000;
         startingTimerDurationInMilliSeconds = 30000;
+        uploadManager = new Upload();
 
 //        drugCounter = ocrCaptureActivity1.findViewById(R.id.drug_count);
         //        progressBar = ocrCaptureActivity1.findViewById(R.id.determinateBar);
@@ -93,10 +98,17 @@ public class OCRDetectorProcessor2 implements Detector.Processor<TextBlock> {
                     Intent intent = new Intent();
                     // TODO: pass data through here and trigger opening of drug list
                     ArrayList<String> ndcCodes = new ArrayList<>();
+                    HashMap<String, ArrayList<String>> data = new HashMap<>();
+                    data.put("result", ndcCodes);
+
                     for (String key : drugsFoundSoFar.keySet()) {
                         Log.i("key", key);
                         ndcCodes.add(key);
                     }
+//                    FirebaseFirestore db = FirebaseFirestore.getInstance();
+//                    Sync mSync = new Sync(db);
+                    uploadManager.uploadDrugs(data);
+
 
 
                     ocrCaptureActivity.setResult(RESULT_OK, intent);

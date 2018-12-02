@@ -45,7 +45,6 @@ public class Sync {
 //
 //                                }
                                 Log.d("sig", document.getId() + " => " + document.getData());
-                                //return document.getData();
                                 try {
                                     data.put("result", document.getData());
                                 } catch (JSONException e) {
