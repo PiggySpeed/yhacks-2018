@@ -42,6 +42,11 @@
             android:label="@string/title_activity_patient"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
+        <activity
+            android:name=".adr.ADRActivity"
+            android:label="@string/title_activity_adr"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
     </application>
 
 </manifest>

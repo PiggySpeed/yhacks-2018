@@ -1,10 +1,8 @@
+
 package com.hacks.yale.yhacks_2018;
 
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -16,28 +14,14 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ImageView;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.bumptech.glide.request.RequestOptions;
-import com.bumptech.glide.request.target.SimpleTarget;
-import com.bumptech.glide.request.transition.Transition;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.hacks.yale.yhacks_2018.firebase.Sync;
 import com.hacks.yale.yhacks_2018.ocr.OCRCaptureActivity;
-
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class DrugActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
     private static final int TEST_RESPONSE = 1;
-    RecyclerView rvMain;
-    private ImageView ivPhoto;
-
-    public DrugActivity() {}
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,63 +41,13 @@ public class DrugActivity extends AppCompatActivity implements NavigationView.On
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        rvMain = (RecyclerView) findViewById(R.id.rvDrug);
-        populateRecyclerView();
 
-        // gif splash screen
-//        ivPhoto = (ImageView) findViewById(R.id.gif);
-//        Glide.with(getApplicationContext())
-//                .load(R.drawable.splash_logo)
-//                .apply(new RequestOptions().diskCacheStrategy(DiskCacheStrategy.NONE))
-//                .into(new SimpleTarget<Drawable>() {
-//
-//                    @Override
-//                    public void onResourceReady(@NonNull Drawable resource, @Nullable Transition<? super Drawable> transition) {
-//                        ivPhoto.setImageDrawable(resource);
-//                    }
-//                });
-//        setTheme(R.style.AppTheme);
-    }
-
-    public void populateRecyclerView() {
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        Sync mSync = new Sync(db);
-        //JSONArray jData = mSync.loadData();
-        ArrayList<Object> arr1 = new ArrayList<>();
-        //Log.d("sigh", String.valueOf(mData));
-        //Log.d("sighhh", String.valueOf(mData.get(0)));
-
-
-        JSONObject jData = mSync.loadData();
-        String str1 = String.valueOf(jData);
-        Log.d("sighh", str1);
-
+        RecyclerView rvMain = (RecyclerView) findViewById(R.id.rvDrug);
 
         ArrayList<Drug> drugs = new ArrayList<Drug>();
-
-        // split up the JSON array into JSON objects
-
-        for (int i = 0; i < jData.length(); i++) {
-            Log.d("sighh", "got to populate");
-
-//            arr1.add(jData.toJSONObject(jData));
-//            JSONObject n = jData.get(i);
-
-//            ArrayList<Object> arr1 = new ArrayList<>();
-
-            //Drug drug = (Drug) obj;
-            //
-            //Drug drug = new Drug(mData.get(i)[1])
-            //drugs.add(drug);
-
-            //drugs.add(new Drug("name", 100, "dummy"));
+        for (int i = 1; i <= 20; i++) {
+            drugs.add(new Drug("Amoxicillin", 500, "dummy"));
         }
-        //ArrayList<Drug> drugs = mSync.loadData();
-
-
-//        for (int i = 1; i <= 20; i++) {
-//            drugs.add(new Drug("Amoxicillin", 500, "dummy"));
-//        }
 
         List<Drug> parentListItems = new ArrayList<>();
         for (Drug drug : drugs) {
@@ -137,7 +71,7 @@ public class DrugActivity extends AppCompatActivity implements NavigationView.On
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.END);
+            drawer.closeDrawer(GravityCompat.START);
         } else {
             super.onBackPressed();
         }
@@ -174,7 +108,6 @@ public class DrugActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
-
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
@@ -192,7 +125,7 @@ public class DrugActivity extends AppCompatActivity implements NavigationView.On
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.END);
+        drawer.closeDrawer(GravityCompat.START);
         return true;
     }
 }

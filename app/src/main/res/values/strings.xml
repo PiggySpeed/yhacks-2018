@@ -9,16 +9,17 @@
     <string name="action_settings">Settings</string>
 
     <!-- Camera/OCR -->
-    <string name="title_activity_camera">Camera Activity</string>
+    <string name="title_activity_camera">OCR Scan</string>
     <string name="low_storage_error">Low Storage</string>
     <string name="permission_camera_rationale">Access to the camera is needed for detection</string>
     <string name="no_camera_permission">This application cannot run because it does not have the camera permission. The application will now exit.</string>
 
     <!-- General Use -->
     <string name="ok">OK</string>
-    <string name="title_activity_patient">PatientActivity</string>
-    <string name="title_activity_drug">DrugActivity</string>
+    <string name="title_activity_patient">Patient Profile</string>
+    <string name="title_activity_drug">Drug Therapy List</string>
     <string name="title_activity_notification">Notifications</string>
+    <string name="title_activity_adr">Adverse Drug Reporting</string>
     <string name="large_text">
         "Material is the metaphor.\n\n"
     </string>

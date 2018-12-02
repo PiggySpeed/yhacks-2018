@@ -17,6 +17,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.hacks.yale.yhacks_2018.adr.ADRActivity;
 import com.hacks.yale.yhacks_2018.firebase.PatientInfo;
 import com.hacks.yale.yhacks_2018.notification.NotificationService;
 import com.hacks.yale.yhacks_2018.ocr.OCRCaptureActivity;
@@ -65,7 +66,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         RecyclerView rvMain = (RecyclerView) findViewById(R.id.rvMain);
 
         ArrayList<Alert> alerts = new ArrayList<Alert>();
-        for (int i = 1; i <= 20; i++) {
+        for (int i = 1; i <= 4; i++) {
             alerts.add(new Alert("hi", "bye"));
         }
 
@@ -154,12 +155,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_manage) {
+
         } else if (id == R.id.nav_share) {
             PatientActivity patientActivity = new PatientActivity();
             patientActivity.loadPatient(patient);
             Intent intent = new Intent(this, PatientActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_send) {
+            Intent intent = new Intent(this, ADRActivity.class);
+            startActivity(intent);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
