@@ -8,12 +8,25 @@ public class Drug implements ParentListItem {
     private String mName;
     private String mDosage;
     private String mNDC;
+    private String mQTY;
+    private String mRoute;
+    private String mFrequency;
+    private String mTag;
+    private String mShortDescription;
+    private String mLongDescription;
+
     private List<DrugDetailed> mChildItemList;
 
-    public Drug(String name, String dosage, String NDC) {
+    public Drug(String name, String dosage, String NDC, String QTY, String route, String frequency, String tag, String short_description, String long_description) {
         mName = name;
         mDosage = dosage;
         mNDC = NDC;
+        mQTY = QTY;
+        mRoute = route;
+        mFrequency = frequency;
+        mTag = tag;
+        mShortDescription = short_description;
+        mLongDescription = long_description;
     }
 
     public String getName() {

@@ -1,0 +1,53 @@
+{
+  "name": "Beers Criteria 2015 Update",
+  "tag": "BEERS 2015",
+  "rules": [
+    { "predicate": "eq", "field": "medications", "value": "000130-2322", "code": 1 },
+    { "predicate": "eq", "field": "medications", "value": "003232-2332", "code": 1 },
+    { "predicate": "eq", "field": "medications", "value": "0032l2-2321", "code": 2 }
+  ],
+  "definitions": {
+    "1": {
+      "short_description": "Highly Anticholinergic Drugs",
+      "long_description": "Highly anticholinergic; clearance reduced with advanced age, and tolerance develops when used as hypnotic; risk of confusion, dry mouth, constipation, and other anticholinergic effects or toxicity",
+      "example": "Brompheniramine Carbinoxamine Chlorpheniramine Clemastine Cyproheptadine Dexbrompheniramine Dexchlorpheniramine Dimenhydrinate Diphenhydramine Doxylamine Hydroxyzine Meclizine Promethazine Triprolidine",
+      "recommenation": "discontinue"
+    },
+    "2": {
+      "short_description": "Antidepressants",
+      "long_description": "Highly anticholinergic, sedating, and cause orthostatic hypotension; safety profile of low- dose doxepin (≤6 mg/d) comparable with that of placebo",
+      "examples": "Amitriptyline Amoxapine Clomipramine Desipramine Doxepin Imipramine Nortriptyline Paroxetine Protriptyline Trimipramine",
+      "recommenation": "discontinue"
+    },
+    "3": {
+      "short_description": "Benzodiazepines",
+      "long_description": "Older adults have increased sensitivity to benzodiazepines and decreased metabolism of long-acting agents; in general, all benzodiazepines increase risk of cognitive impairment, delirium, falls, fractures, and motor vehicle crashes in older adults",
+      "examples": "Alprazolam Estazolam Lorazepam Oxazepam Temazepam Triazolam Clorazepate Chlordiazepoxide Clonazepam Diazepam Flurazepam Quazepam",
+      "recommenation": "discontinue"
+    },
+    "4": {
+      "short_description": "Benzodiazepine Receptor Agonists",
+      "long_description": "Benzodiazepine-receptor agonists have adverse events similar to those of benzodiazepines in older adults (e.g., delirium, falls, fractures); increased emergency department visits and hospitalizations; motor vehicle crashes; minimal improvement in sleep latency and duration",
+      "examples": "Eszopiclone Zopiclone Zolpidem",
+      "recommenation": "discontinue"
+    },
+    "5": {
+      "short_description": "Proton Pump Inhibitors",
+      "long_description": "Risk of Clostridium difficile infection and bone loss and fractures",
+      "examples": "Pantoprazole Lansoprazole",
+      "recommenation": "discontinue"
+    },
+    "6": {
+      "short_description": "NSAIDs",
+      "long_description": "Increased risk of gastrointestinal bleeding or peptic ulcer disease in high-risk groups, including those aged >75 or taking oral or parenteral corticosteroids, anticoagulants, or antiplatelet agents; use of proton-pump inhibitor or misoprostol reduces but does not eliminate risk. Upper gastrointestinal ulcers, gross bleeding, or perforation caused by NSAIDs occur in approximately 1% of patients treated for 3–6 months and in ~2–4% of patients treated for 1 year; these trends continue with longer duration of use",
+      "examples": "Aspirin Diclofenac Diflusinal Etodolac Fenoprofen Ibuprofen Ketoprofen Meclofenamate Mefenamic acid Meloxicam Nabumetone Naproxen Oxaprozin Piroxicam Sulindac Tolmetin Indomethacin Ketorolac",
+      "recommenation": "discontinue"
+    },
+    "7": {
+      "short_description": "Skeletal Muscle Relaxants",
+      "long_description": "Most muscle relaxants poorly tolerated by older adults because some have anticholinergic adverse effects, sedation, increased risk of fractures; effectiveness at dosages tolerated by older adults questionable",
+      "examples": "Carisoprodol Chlorzoxazone Cyclobenzaprine Metaxalone Methocarbamol Orphenadrine",
+      "recommenation": "discontinue"
+    }
+  }
+}

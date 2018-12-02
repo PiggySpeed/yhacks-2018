@@ -22,6 +22,9 @@ import java.util.List;
 
 public class DrugActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
     private static final int TEST_RESPONSE = 1;
+    private DrugAdapter adapter;
+    private RecyclerView rvMain;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,30 +44,41 @@ public class DrugActivity extends AppCompatActivity implements NavigationView.On
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        rvMain = (RecyclerView) findViewById(R.id.rvDrug);
+    }
+    //
 
-        RecyclerView rvMain = (RecyclerView) findViewById(R.id.rvDrug);
+    public void renderDrugList(ArrayList<String> drugs) {
+        ArrayList<Drug> result = new ArrayList<>();
 
-        ArrayList<Drug> drugs = new ArrayList<Drug>();
-        for (int i = 1; i <= 20; i++) {
-            drugs.add(new Drug("Amoxicillin", 500, "dummy"));
+        for (int i = 0; i < drugs.size(); i++) {
+            Drug drug = renderDrugEntry(drugs.get(i));
+            if (drug != null) {
+                result.add(drug);
+            }
         }
 
-        List<Drug> parentListItems = new ArrayList<>();
-        for (Drug drug : drugs) {
-            List<DrugDetailed> childListItems = new ArrayList<>();
-            childListItems.add(new DrugDetailed("detail 1"));
-            childListItems.add(new DrugDetailed("detail 2"));
-            childListItems.add(new DrugDetailed("detail 3"));
-            childListItems.add(new DrugDetailed("detail 4"));
-            childListItems.add(new DrugDetailed("detail 5"));
-
-            drug.setmChildItemList(childListItems);
-            parentListItems.add(drug);
-        }
-
-        DrugAdapter adapter = new DrugAdapter(this, drugs);
+        adapter = new DrugAdapter(this, result);
         rvMain.setAdapter(adapter);
         rvMain.setLayoutManager(new LinearLayoutManager(this));
+    }
+
+    public Drug renderDrugEntry(String ndc) {
+        if (ndc.equals("65862-010")) {
+            return new Drug("Metformin", "1000mg", "65862-010", "1", "Oral", "Twice Daily", "", "", "");
+        } else if (ndc.equals("65862-010")) {
+            return new Drug("Amitriptyline", "25mg", "0378-2625-10", "1", "Oral", "At Bedtime", "BEERS 2015", "Antidepressants", "Highly anticholinergic, sedating, and cause orthostatic hypotension; safety profile of low- dose doxepin (≤6 mg/d) comparable with that of placebo");
+        } else if (ndc.equals("00062-910")) {
+            return new Drug("Pantoprazole", "40mg", "70518-012", "1", "Oral", "Once Daily", "BEERS 2015", "Proton Pump Inhibitors", "Risk of Clostridium difficile infection and bone loss and fractures");
+        } else if (ndc.equals("65099-010")) {
+            return new Drug("Diphenhydramine", "25mg", "65862-010", "1", "Oral", "Twice Daily", "STOPP 2015", "Antihistamines (First-Generation)", "First-generation antihistamines in patients with falls.");
+        } else if (ndc.equals("65862-310")) {
+            return new Drug("Gabapentin", "600mg", "65862-010", "1", "Oral", "Three times a day", "", "", "");
+        } else if (ndc.equals("65862-014")) {
+            return new Drug("Clonazepam", "0.5mg", "65862-010", "1", "Oral", "Twice Daily", "BEERS 2015", "Benzodiazepines", "Older adults have increased sensitivity to benzodiazepines and decreased metabolism of long-acting agents; in general, all benzodiazepines increase risk of cognitive impairment, delirium, falls, fractures, and motor vehicle crashes in older adults");
+        } else {
+            return null;
+        }
     }
 
     @Override

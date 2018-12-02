@@ -15,6 +15,7 @@ import com.bignerdranch.expandablerecyclerview.Model.ParentListItem;
 import com.bignerdranch.expandablerecyclerview.ViewHolder.ChildViewHolder;
 import com.bignerdranch.expandablerecyclerview.ViewHolder.ParentViewHolder;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -23,7 +24,7 @@ public class DrugAdapter extends ExpandableRecyclerAdapter<DrugAdapter.MyParentV
     List<Drug> mDrugs;
     private Context mContext;
 
-    public DrugAdapter(Context context, List<Drug> drugs) {
+    public DrugAdapter(Context context, ArrayList<Drug> drugs) {
         super(drugs);
         mInflater = LayoutInflater.from(context);
         mDrugs = drugs;
@@ -51,6 +52,7 @@ public class DrugAdapter extends ExpandableRecyclerAdapter<DrugAdapter.MyParentV
             });
         }
     }
+
     private void sendMail() {
         String[] TO = {"vanessahlyan@gmail.com"};
 
@@ -82,6 +84,7 @@ public class DrugAdapter extends ExpandableRecyclerAdapter<DrugAdapter.MyParentV
             tvChildField.setText("This drug is used to treat diabetes.");
         }
     }
+
     @Override
     public MyParentViewHolder onCreateParentViewHolder(ViewGroup viewGroup) {
         View view = mInflater.inflate(R.layout.item_drug, viewGroup, false);

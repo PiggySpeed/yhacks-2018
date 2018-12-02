@@ -1,0 +1,47 @@
+{
+  "name": "STOPP Criteria 2015 Update",
+  "tag": "STOPP 2015",
+  "rules": [
+    { "predicate": "eq", "field": "medications", "value": "000130-2322", "code": 1 },
+    { "predicate": "eq", "field": "medications", "value": "003232-2332", "code": 1 },
+    { "predicate": "eq", "field": "medications", "value": "0032l2-2321", "code": 2 }
+  ],
+  "definitions": {
+    "1": {
+      "short_description": "Aspirin",
+      "long_description": "Aspirin with no history of coronary, cerebral or peripheral arterial occlusive symptoms. Aspirin to treat dizziness not clearly attributable to cerebrovascular disease.",
+      "examples": "Aspirin",
+      "recommenation": "discontinue"
+    },
+    "2": {
+      "short_description": "Calcium Channel Blockers",
+      "long_description": "todo",
+      "examples": "todo",
+      "recommenation": "discontinue"
+    },
+    "3": {
+      "short_description": "Beta-Blockers (Non-Cardioselective)",
+      "long_description": "Non-cardioselective beta-blocker with chronic obstructive pulmonary disease",
+      "examples": "todo",
+      "recommenation": "discontinue"
+    },
+    "4": {
+      "short_description": "Calcium Channel Blockers",
+      "long_description": "todo",
+      "examples": "todo",
+      "recommenation": "discontinue"
+    },
+    "5": {
+      "short_description": "Antihistamines (First-Generation)",
+      "long_description": "First-generation antihistamines in patients with falls",
+      "examples": "Diphenhydramine",
+      "recommenation": "discontinue"
+    },
+    "6": {
+      "short_description": "Opioids",
+      "long_description": "Long-term opioids in patients with falls. Long-term opioids in those with dementia unless indicated for palliative care or management of moderate/severe chronic pain syndrome.",
+      "examples": "Morphine Hydrocodone Codeine Fentanyl Oxycodone Supedol",
+      "recommenation": "discontinue"
+    }
+  }
+}
