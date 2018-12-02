@@ -1,27 +1,102 @@
 {
   "project_info": {
-    "project_number": "372376620503",
-    "firebase_url": "https://polypharmacy-app.firebaseio.com",
-    "project_id": "polypharmacy-app",
-    "storage_bucket": "polypharmacy-app.appspot.com"
+    "project_number": "755060208319",
+    "firebase_url": "https://yhack-52d07.firebaseio.com",
+    "project_id": "yhack-52d07",
+    "storage_bucket": "yhack-52d07.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:372376620503:android:ba5a31fd0575a7aa",
+        "mobilesdk_app_id": "1:755060208319:android:19f788e6db66aea2",
+        "android_client_info": {
+          "package_name": "com.example.jennifer.yhackstesting"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "755060208319-psn8uvhf65uom6a6dal6i6sqfoktg2rd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD7tc5C9oFkYnF0sG0z3oM00dqxslD-f-o"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:755060208319:android:ba5a31fd0575a7aa",
         "android_client_info": {
           "package_name": "com.hacks.yale.yhacks_2018"
         }
       },
       "oauth_client": [
         {
-          "client_id": "372376620503-os0mgah2io355mk8k8dio1cs07nu5obf.apps.googleusercontent.com",
+          "client_id": "755060208319-2pdgg3m01t0cos9ffgk23l1m5kq849j6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.hacks.yale.yhacks_2018",
+            "certificate_hash": "311cb12d6ad20a527ea0285fc43523f4d3bc7e03"
+          }
+        },
+        {
+          "client_id": "755060208319-psn8uvhf65uom6a6dal6i6sqfoktg2rd.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyA4AZiF3UQISucTGqsWgMzmdS-1PrbNdaI"
+          "current_key": "AIzaSyD7tc5C9oFkYnF0sG0z3oM00dqxslD-f-o"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "755060208319-psn8uvhf65uom6a6dal6i6sqfoktg2rd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:755060208319:android:a0e0a23f3f346099",
+        "android_client_info": {
+          "package_name": "com.yhack2018"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "755060208319-psn8uvhf65uom6a6dal6i6sqfoktg2rd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD7tc5C9oFkYnF0sG0z3oM00dqxslD-f-o"
         }
       ],
       "services": {

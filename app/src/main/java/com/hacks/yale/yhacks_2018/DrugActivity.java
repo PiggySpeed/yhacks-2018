@@ -14,13 +14,18 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.hacks.yale.yhacks_2018.firebase.Sync;
 import com.hacks.yale.yhacks_2018.ocr.OCRCaptureActivity;
+
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class DrugActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
     private static final int TEST_RESPONSE = 1;
+    RecyclerView rvMain;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,13 +45,49 @@ public class DrugActivity extends AppCompatActivity implements NavigationView.On
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        rvMain = (RecyclerView) findViewById(R.id.rvDrug);
+        populateRecyclerView();
+    }
 
-        RecyclerView rvMain = (RecyclerView) findViewById(R.id.rvDrug);
+    public void populateRecyclerView() {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        Sync mSync = new Sync(db);
+        //JSONArray jData = mSync.loadData();
+        ArrayList<Object> arr1 = new ArrayList<>();
+        //Log.d("sigh", String.valueOf(mData));
+        //Log.d("sighhh", String.valueOf(mData.get(0)));
+
+
+        JSONObject jData = mSync.loadData();
+        String str1 = String.valueOf(jData);
+        Log.d("sighh", str1);
+
 
         ArrayList<Drug> drugs = new ArrayList<Drug>();
-        for (int i = 1; i <= 20; i++) {
-            drugs.add(new Drug("Amoxicillin", 500, "dummy"));
+
+        // split up the JSON array into JSON objects
+
+        for (int i = 0; i < jData.length(); i++) {
+            Log.d("sighh", "got to populate");
+
+//            arr1.add(jData.toJSONObject(jData));
+//            JSONObject n = jData.get(i);
+
+//            ArrayList<Object> arr1 = new ArrayList<>();
+
+            //Drug drug = (Drug) obj;
+            //
+            //Drug drug = new Drug(mData.get(i)[1])
+            //drugs.add(drug);
+
+            //drugs.add(new Drug("name", 100, "dummy"));
         }
+        //ArrayList<Drug> drugs = mSync.loadData();
+
+
+//        for (int i = 1; i <= 20; i++) {
+//            drugs.add(new Drug("Amoxicillin", 500, "dummy"));
+//        }
 
         List<Drug> parentListItems = new ArrayList<>();
         for (Drug drug : drugs) {

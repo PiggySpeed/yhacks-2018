@@ -17,30 +17,49 @@ import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
-import static com.google.firebase.firestore.DocumentChange.Type.ADDED;
-import static com.google.firebase.firestore.DocumentChange.Type.MODIFIED;
-import static com.google.firebase.firestore.DocumentChange.Type.REMOVED;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class Sync {
-
-    FirebaseFirestore db = FirebaseFirestore.getInstance();
+    public FirebaseFirestore db;
 
     private static final String TAG = "SIGHH";
 
-    public void loadData (){
+    JSONObject data = new JSONObject();
+
+    public Sync(FirebaseFirestore mdb){
+        db = mdb;
+    }
+
+    public JSONObject loadData () {
+        Log.d("sig", "loading data");
+
         db.collection("users").get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        Log.d("sig", "listener is completed");
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
-                                Log.d(TAG, document.getId() + " => " + document.getData());
+//                                for (QuerySnapshot field : DocumentSnapshot()) {
+//
+//                                }
+                                Log.d("sig", document.getId() + " => " + document.getData());
+                                //return document.getData();
+                                try {
+                                    data.put("result", document.getData());
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
                             }
                         } else {
                             Log.d(TAG, "Error getting documents: ", task.getException());
                         }
                     }
                 });
+        return data;
+    }
+
 
 //        db.collection("cities")
 //                .whereEqualTo("state", "CA")
@@ -63,7 +82,6 @@ public class Sync {
 //                    }
 //                });
 
-    }
 
     public void checkFirebase () {
         final DocumentReference docRef = db.collection("users").document("h0JDdVGWRnWJLXum3muDI0Kiw183");

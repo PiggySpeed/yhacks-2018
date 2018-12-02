@@ -7,7 +7,6 @@ import android.widget.TextView;
 
 import com.google.android.gms.vision.Detector;
 import com.google.android.gms.vision.text.TextBlock;
-import com.hacks.yale.yhacks_2018.R;
 import com.hacks.yale.yhacks_2018.camera.GraphicOverlay;
 
 import java.util.ArrayList;
@@ -93,6 +92,13 @@ public class OCRDetectorProcessor2 implements Detector.Processor<TextBlock> {
                 if (setInterval() < 1) {
                     Intent intent = new Intent();
                     // TODO: pass data through here and trigger opening of drug list
+                    ArrayList<String> ndcCodes = new ArrayList<>();
+                    for (String key : drugsFoundSoFar.keySet()) {
+                        Log.i("key", key);
+                        ndcCodes.add(key);
+                    }
+
+
                     ocrCaptureActivity.setResult(RESULT_OK, intent);
                     ocrCaptureActivity.finish();
 //                    setProgressBarValues();

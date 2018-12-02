@@ -6,11 +6,11 @@ import java.util.List;
 
 public class Drug implements ParentListItem {
     private String mName;
-    private int mDosage;
+    private String mDosage;
     private String mNDC;
     private List<DrugDetailed> mChildItemList;
 
-    public Drug(String name, int dosage, String NDC) {
+    public Drug(String name, String dosage, String NDC) {
         mName = name;
         mDosage = dosage;
         mNDC = NDC;
@@ -19,7 +19,7 @@ public class Drug implements ParentListItem {
     public String getName() {
         return mName;
     }
-    public String getDosage() {return Integer.toString(mDosage);}
+    public String getDosage() {return mDosage;}
     public String getNDC() {return mNDC; }
 
     @Override
