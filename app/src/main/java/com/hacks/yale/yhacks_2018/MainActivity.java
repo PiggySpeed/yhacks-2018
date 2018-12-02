@@ -90,12 +90,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onStop();
 
         final Handler handler = new Handler();
-        Log.i("onStop called ", "--=-=-=-=-=-");
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                Log.i("countdown ", "--=-=-=-=-=-");
-                notificationService.showNotification();
+            notificationService.showNotification();
             }
         }, countdown);
     }

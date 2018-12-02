@@ -40,9 +40,9 @@ public class OCRDetectorProcessor2 implements Detector.Processor<TextBlock> {
         drugsFoundSoFar = new HashMap<>();
         numDrugsSoFar = 0;
         timer = new Timer();
-        timerDuration = 30;
-        timerDurationInMilliSeconds = 30000;
-        startingTimerDurationInMilliSeconds = 30000;
+        timerDuration = 15;
+        timerDurationInMilliSeconds = 15000;
+        startingTimerDurationInMilliSeconds = 15000;
         uploadManager = new Upload();
 
 //        drugCounter = ocrCaptureActivity1.findViewById(R.id.drug_count);
@@ -72,7 +72,7 @@ public class OCRDetectorProcessor2 implements Detector.Processor<TextBlock> {
         // update current drug count
         int numDrugs = drugsFoundSoFar.size();
         if (numDrugs != numDrugsSoFar) {
-            Log.i("------ numDrugs: ", numDrugs + "");
+//            Log.i("------ numDrugs: ", numDrugs + "");
 //            ocrCaptureActivity.incrementDrugCount(Integer.toString(numDrugs));
 //            drugCounter.setText("awef");
         }
@@ -94,19 +94,26 @@ public class OCRDetectorProcessor2 implements Detector.Processor<TextBlock> {
         // if counter is 0, then stop activity and sent to API
         timer.schedule(new TimerTask() {
             public void run() {
-                if (setInterval() < 1) {
+                if (setInterval() == 1) {
                     Intent intent = new Intent();
                     // TODO: pass data through here and trigger opening of drug list
                     ArrayList<String> ndcCodes = new ArrayList<>();
-                    HashMap<String, ArrayList<String>> data = new HashMap<>();
-                    data.put("result", ndcCodes);
 
+                    Log.i("FINISHED UPLOADING!", "------------------");
+                    String result = "";
                     for (String key : drugsFoundSoFar.keySet()) {
                         Log.i("key", key);
                         ndcCodes.add(key);
+                        result = result + " ";
+                        result = result + key;
                     }
+
+                    HashMap<String, ArrayList<String>> data = new HashMap<>();
+                    data.put("result", ndcCodes);
+
 //                    FirebaseFirestore db = FirebaseFirestore.getInstance();
 //                    Sync mSync = new Sync(db);
+//                    Log.i("investigated:", result);
                     uploadManager.uploadDrugs(data);
 
 
