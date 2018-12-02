@@ -7,9 +7,9 @@ public class Rule {
     public String code;
     public String predicate;
     public String field;
-    public String value;
+    public Object value;
 
-    public Rule(int type, String NCD, String code, String predicate, String field, String value) {
+    public Rule(int type, String NCD, String code, String predicate, String field, Object value) {
         this.type = type;
         this.NCD = NCD;
         this.code = code;

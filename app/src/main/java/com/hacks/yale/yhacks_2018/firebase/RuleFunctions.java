@@ -5,6 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.hacks.yale.yhacks_2018.R;
 
+import java.util.ArrayList;
+
 public class RuleFunctions extends AppCompatActivity {
 
     private static final String TAG = "SIGHH";
@@ -19,11 +21,21 @@ public class RuleFunctions extends AppCompatActivity {
 
 
         //DUMMY RULES
-        Rule[] rules = {new Rule(1, "0002-0800", "1", "greater", "age", "65")};
+        Rule[] rules = {new Rule(1, "0002-0800", "1", "greater", "age", 65)};
+
+        ArrayList<String> allergies = new ArrayList<>();
+        allergies.add("hackathons");
+
+        ArrayList<String> conditions = new ArrayList<>();
+        conditions.add("deadness");
+        conditions.add ("fatigue");
+
+        ArrayList<String> medications = new ArrayList<>();
+        medications.add("0002-0800");
+        medications.add("0002-3229");
 
         // DUMMY PATIENT
-        Patient patient = new Patient("John Lee", "89", "500", "M",
-                new String[]{"0002-0800", "0002-3229"}, new String[]{"deadness", "fatigue"}, new String[]{"hackathons"});
+        PatientInfo patient1 = new PatientInfo("John Lee", 89, "Male", 60, allergies , conditions, medications);
 
         // HERE HERE HERE - WARNING/FLAGS!!! warnings[0] is index of drug in ydb, warnings[1] is code
         int[][] warnings = new int[ydb.length * rules.length][2];
@@ -35,19 +47,19 @@ public class RuleFunctions extends AppCompatActivity {
                 if (ydb[i].equals(rule.NCD)) {
                     if (rule.type == 1) {
                         if (rule.field.equals("age")) {
-                            beware = evalType1(rule.predicate, patient.age, rule.value);
+                            beware = evalType1(rule.predicate, patient1.getAge(), (int)rule.value);
                         } else if (rule.field.equals("gfr")) {
-                            beware = evalType1(rule.predicate, patient.gfr, rule.value);
+                            beware = evalType1(rule.predicate, patient1.getGFR(), (int)rule.value);
                         } else {
-                            beware = evalType1(rule.predicate, patient.gender, rule.value);
+                            beware = evalType3(rule.predicate, patient1.getSex(), (String)rule.value);
                         }
                     } else {
                         if (rule.field.equals("meds")) {
-                            beware = evalType2(patient.meds, rule.value);
+                            beware = evalType2(patient1.getMedications(), (int)rule.value);
                         } else if (rule.field.equals("conditions")) {
-                            beware = evalType2(patient.conditions, rule.value);
+                            beware = evalType2(patient1.getConditions(), (int)rule.value);
                         } else {
-                            beware = evalType2(patient.allergies, rule.value);
+                            beware = evalType2(patient1.getAllergies(), (int)rule.value);
                         }
                     }
                 }
@@ -61,11 +73,19 @@ public class RuleFunctions extends AppCompatActivity {
         }
     }
 
+    public Boolean evalType1(String predicate, int fieldVal, int value) {
+        if (predicate.equals("eq")) {
+            return ((fieldVal-value)==0);
+        } else if (predicate.equals("lesser")) {
+            return ((fieldVal-value)<0);
+        } else {
+            return ((fieldVal-value)>0);
+        }
+    }
 
-
-    public Boolean evalType2(String[] fieldVal, String value) {
-        for (String val : fieldVal) {
-            if (val.equals(value)) {
+    public Boolean evalType2(ArrayList<String> val, int value) {
+        for (int i = 0; i< val.size(); i++) {
+            if (Integer.parseInt(val.get(i))==value) {
                 return true;
             }
         }
@@ -73,14 +93,11 @@ public class RuleFunctions extends AppCompatActivity {
         return false;
     }
 
-    public Boolean evalType1(String predicate, String fieldVal, String value) {
+    public Boolean evalType3(String predicate, String fieldVal, String value) {
         if (predicate.equals("eq")) {
             return fieldVal.equals(value);
-        } else if (predicate.equals("lesser")) {
-            return Integer.parseInt(fieldVal) < Integer.parseInt(value);
-        } else {
-            return Integer.parseInt(fieldVal) > Integer.parseInt(value);
         }
+        return null;
     }
 
     public String inPatientList(String field, String name) {

@@ -19,7 +19,7 @@ public class PatientInfo {
             this.name = name;
             this.age = age;
             this.sex = sex;
-            this. GFR = GFR;
+            this.GFR = GFR;
             this.allergies = allergies;
             this.conditions = conditions;
             this.medications = medications;
